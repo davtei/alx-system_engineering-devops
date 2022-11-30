@@ -1,2 +1,2 @@
 #!/bin/bash
-ln -s /bin/bash /tmp/iamfile & file /tmp/iamfile
+ln -T /bin/bash /tmp/iamfile & file /tmp/iamfile
