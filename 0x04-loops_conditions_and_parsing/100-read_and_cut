@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#  A Bash script that displays content of the file /etc/passwd.
+#  Uses the while loop to display userame, user id and Home dir path for the userz
+
+while read -r passwd;
+do
+	echo "$passwd" | cut -d ":" -f1,3,6
+done < "/etc/passwd"
