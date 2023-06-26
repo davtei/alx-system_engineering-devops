@@ -18,21 +18,21 @@ Resources
 
 Read or watch:
 
-    [What is a (physical) server - text](https://en.wikipedia.org/wiki/Server_%28computing%29#Hardware_requirement)
-    [What is a (physical) server - video](https://www.youtube.com/watch?v=B1ANfsDyjeA)
-    [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
-    [SSH Config File](https://www.ssh.com/academy/ssh/config)
-    [Public Key Authentication for SSH](https://www.ssh.com/academy/ssh/public-key-authentication)
-    [How Secure Shell Works](https://www.youtube.com/watch?v=ORcvSkgdA58)
-    [SSH Crash Course](https://www.youtube.com/watch?v=hQWRp-FdTpc) (Long, but highly informative. Watch this if configuring SSH is still confusing. It may be helpful to watch at x1.25 speed or above.)
+- [What is a (physical) server - text](https://en.wikipedia.org/wiki/Server_%28computing%29#Hardware_requirement)
+- [What is a (physical) server - video](https://www.youtube.com/watch?v=B1ANfsDyjeA)
+- [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
+- [SSH Config File](https://www.ssh.com/academy/ssh/config)
+- [Public Key Authentication for SSH](https://www.ssh.com/academy/ssh/public-key-authentication)
+- [How Secure Shell Works](https://www.youtube.com/watch?v=ORcvSkgdA58)
+- [SSH Crash Course](https://www.youtube.com/watch?v=hQWRp-FdTpc) (Long, but highly informative. Watch this if configuring SSH is still confusing. It may be helpful to watch at x1.25 speed or above.)
 
 For reference:
 
-    Understanding the SSH Encryption and Connection Process
-    Secure Shell Wiki
-    IETF RFC 4251 (Description of the SSH Protocol)
-    Internet Engineering Task Force
-    Request for Comments
+- [Understanding the SSH Encryption and Connection Process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)
+- [Secure Shell Wiki](https://en.wikipedia.org/wiki/Secure_Shell)
+- [IETF RFC 4251 (Description of the SSH Protocol)](https://www.ietf.org/rfc/rfc4251.txt)
+- [Internet Engineering Task Force](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force)
+- [Request for Comments](https://en.wikipedia.org/wiki/Request_for_Comments)
 
 man or help:
 
@@ -84,12 +84,12 @@ Requirements:
     Only use ssh single-character flags
     You cannot use -l
     You do not need to handle the case of a private key protected by a passphrase
-
+```sh
 sylvain@ubuntu$ ./0-use_a_private_key
 ubuntu@server01:~$ exit
 Connection to 8.8.8.8 closed.
 sylvain@ubuntu$
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
@@ -108,7 +108,7 @@ Requirements:
     The created key must be protected by the passphrase betty
 
 Example:
-
+```sh
 sylvain@ubuntu$ ls
 1-create_ssh_key_pair
 sylvain@ubuntu$ ./1-create_ssh_key_pair
@@ -132,7 +132,7 @@ The key's randomart image is:
 sylvain@ubuntu$ ls
 1-create_ssh_key_pair school  school.pub
 sylvain@ubuntu$
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
@@ -150,7 +150,7 @@ Requirements:
     Your SSH client configuration must be configured to refuse to authenticate using a password
 
 Example:
-
+```sh
 sylvain@ubuntu$ ssh -v ubuntu@98.98.98.98
 OpenSSH_6.6.1, OpenSSL 1.0.1f 6 Jan 2014
 debug1: Reading configuration data /etc/ssh/ssh_config
@@ -192,7 +192,7 @@ debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
 debug1: Sending environment.
 debug1: Sending env LANG = en_US.UTF-8
 ubuntu@magic-server:~$
-
+```
 In the example above, we can see that ssh tries to authenticate using school and does not try to authenticate using a password. You can replace 98.98.98.98 by the IP of your server for testing purposes.
 
 Repo:
@@ -208,10 +208,37 @@ Now that you have successfully connected to your server, we would also like to j
 
 Add the SSH public key below to your server so that we can connect using the ubuntu user.
 
+```sh
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNdtrNGtTXe5Tp1EJQop8mOSAuRGLjJ6DW4PqX4wId/Kawz35ESampIqHSOTJmbQ8UlxdJuk0gAXKk3Ncle4safGYqM/VeDK3LN5iAJxf4kcaxNtS3eVxWBE5iF3FbIjOqwxw5Lf5sRa5yXxA8HfWidhbIG5TqKL922hPgsCGABIrXRlfZYeC0FEuPWdr6smOElSVvIXthRWp9cr685KdCI+COxlj1RdVsvIo+zunmLACF9PYdjB2s96Fn0ocD3c5SGLvDOFCyvDojSAOyE70ebIElnskKsDTGwfT4P6jh9OBzTyQEIS2jOaE5RQq4IB4DsMhvbjDSQrP0MdCLgwkN
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
     Directory: 0x0B-ssh
+
+
+4. Client configuration file (w/ Puppet)
+#advanced
+
+Let’s practice using Puppet to make changes to our configuration file. Just as in the previous configuration file task, we’d like you to set up your client SSH configuration file so that you can connect to a server without typing a password.
+
+Requirements:
+
+    Your SSH client configuration must be configured to use the private key ~/.ssh/school
+    Your SSH client configuration must be configured to refuse to authenticate using a password
+
+Example:
+```sh
+vagrant@ubuntu:~$ sudo puppet apply 100-puppet_ssh_config.pp
+Notice: Compiled catalog for ubuntu-xenial in environment production in 0.11 seconds
+Notice: /Stage[main]/Main/File_line[Turn off passwd auth]/ensure: created
+Notice: /Stage[main]/Main/File_line[Declare identity file]/ensure: created
+Notice: Finished catalog run in 0.03 seconds
+vagrant@ubuntu:~$
+```
+Repo:
+
+    GitHub repository: alx-system_engineering-devops
+    Directory: 0x0B-ssh
+    File: 100-puppet_ssh_config.pp
 
