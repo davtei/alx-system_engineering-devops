@@ -1,11 +1,11 @@
-# To connect to a server without typing a password.
+#configuration file for connecting to an SSH server without typing a password
 file_line { 'Turn off passwd auth':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
   line   => '    PasswordAuthentication no',
 }
-file_line {'Declare identity file':
+file_line { 'Declare identity file':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   => '    Identity ~/.ssh/school',
-}
+  line   => '    IdentityFile ~/.ssh/school',
+  }
