@@ -279,8 +279,7 @@ Web servers are the piece of software generating and serving HTML pages, let’s
 
 Requirements:
 
-    Install nginx on your web-01
-    server
+    Install nginx on your web-01 server
     Nginx should be listening on port 80
     When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
     As an answer file, write a Bash script that configures a new Ubuntu machine to respect above requirements (this script will be run on the server itself)
@@ -321,7 +320,7 @@ Repo:
     Directory: 0x0C-web_server
     File: 1-install_nginx_web_server
 
-2. Setup a domain name
+1. Setup a domain name
 mandatory
 Score: 0.0% (Checks completed: 0.0%)
 
