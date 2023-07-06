@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# A Bash script that installs and configures HAproxy on aserver, lb-01.
+apt-get install -y software-properties-common
+apt-get -y update
+apt-get install -y haproxy
+
+echo "ENABLED=1" > /etc/default/haproxy
+
+# Listen to web1 and web2 servers
+echo "
+   listen load_balancer
+   bind *:80
+   mode http
+   balance roundrobin
+   option httpclose
+   option forwardfor
+   server 195024-web-01 34.224.95.183:80 check
+   server 195024-web-02 100.26.224.205:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+service haproxy start
