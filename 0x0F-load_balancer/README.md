@@ -1,5 +1,5 @@
-0x0F. Load balancer
-DevOpsSysAdmin
+# **[0x0F. Load balancer](https://intranet.alxswe.com/projects/275)**
+<button>DevOps</button> <button>SysAdmin</button>
 
     By: Sylvain Kalache, co-founder at Holberton School
     Weight: 1
@@ -7,12 +7,13 @@ DevOpsSysAdmin
     Checker was released at Jul 3, 2023 12:00 PM
     An auto review will be launched at the deadline
 
-Concepts
-
+## **Concepts**
 For this project, we expect you to look at these concepts:
 
-    Load balancer
-    Web stack debugging
+- [Load balancer](https://intranet.alxswe.com/concepts/46)
+- [Web stack debugging](https://intranet.alxswe.com/concepts/68)
+
+![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/275/qfdked8.png)
 
 Background Context
 
@@ -45,11 +46,13 @@ General
     The second line of all your Bash scripts should be a comment explaining what is the script doing
 
 Your servers
-Name 	Username 	IP 	State
-195024-web-01 	ubuntu 	34.224.95.183 	running
-195024-web-02
-195024-lb-01
-Tasks
+
+    Name 	        Username 	IP 	            State
+    195024-web-01 	ubuntu 	    34.224.95.183 	running
+    195024-web-02 	ubuntu 	    100.26.224.205 	running
+    195024-lb-01    ubuntu 	    100.25.119.99 	running
+
+## **Tasks**
 0. Double the number of webservers
 mandatory
 
@@ -73,7 +76,7 @@ sylvain@ubuntu$ curl -sI 54.89.38.100 | grep X-Served-By
 X-Served-By: 03-web-02
 sylvain@ubuntu$
 
-If your server’s hostnames are not properly configured ([STUDENT_ID]-web-01 and [STUDENT_ID]-web-02.), follow this tutorial.
+If your server’s hostnames are not properly configured ([STUDENT_ID]-web-01 and [STUDENT_ID]-web-02.), follow this [tutorial](https://repost.aws/knowledge-center/linux-static-hostname).
 
 Repo:
 
@@ -91,7 +94,7 @@ Requirements:
     Configure HAproxy so that it send traffic to web-01 and web-02
     Distribute requests using a roundrobin algorithm
     Make sure that HAproxy can be managed via an init script
-    Make sure that your servers are configured with the right hostnames: [STUDENT_ID]-web-01 and [STUDENT_ID]-web-02. If not, follow this tutorial.
+    Make sure that your servers are configured with the right hostnames: [STUDENT_ID]-web-01 and [STUDENT_ID]-web-02. If not, follow this [tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-hostname.html).
     For your answer file, write a Bash script that configures a new Ubuntu machine to respect above requirements
 
 Example:
@@ -128,3 +131,18 @@ Repo:
     Directory: 0x0F-load_balancer
     File: 1-install_load_balancer
 
+2. Add a custom HTTP header with Puppet
+#advanced
+
+Just as in task #0, we’d like you to automate the task of creating a custom HTTP header response, but with Puppet.
+
+- The name of the custom HTTP header must be X-Served-By
+- The value of the custom HTTP header must be the hostname of the server Nginx is running on
+- Write 2-puppet_custom_http_response_header.pp so that it configures a brand new Ubuntu machine to the requirements asked in this task
+
+Repo:
+
+    GitHub repository: alx-system_engineering-devops
+    Directory: 0x0F-load_balancer
+    File: 2-puppet_custom_http_response_header.pp
+    
