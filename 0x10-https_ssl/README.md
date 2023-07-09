@@ -168,7 +168,7 @@ Requirements:
 
 The file 1-haproxy_ssl_termination must be your HAproxy configuration file
 
-Make sure to install HAproxy 1.5 or higher, SSL termination is not available before v1.5.
+Make sure to install HAproxy 1.5 or higher, [SSL termination](https://en.wikipedia.org/wiki/TLS_termination_proxy) is not available before v1.5.
 
 Example:
 ```sh
@@ -200,10 +200,10 @@ A good habit is to enforce HTTPS traffic so that no unencrypted traffic is possi
 
 Requirements:
 
-    This should be transparent to the user
-    HAproxy should return a 301
-    HAproxy should redirect HTTP traffic to HTTPS
-    Share your HAproxy config as an answer file (/etc/haproxy/haproxy.cfg)
+- This should be transparent to the user
+- HAproxy should return a [301](https://en.wikipedia.org/wiki/HTTP_301)
+- HAproxy should redirect HTTP traffic to HTTPS
+- Share your HAproxy config as an answer file (/etc/haproxy/haproxy.cfg)
 
 The file 100-redirect_http_to_https must be your HAproxy configuration file
 
