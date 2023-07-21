@@ -1,5 +1,6 @@
-0x12. Web stack debugging #2
-DevOpsSysAdminScriptingDebugging
+[0x12. Web stack debugging #2](https://intranet.alxswe.com/projects/287)
+
+<button>DevOps</button> <button>SysAdmin</button> <button>Scripting</button> <button>Debugging</button>
 
     By: Sylvain Kalache, co-founder at Holberton School
     Weight: 1
