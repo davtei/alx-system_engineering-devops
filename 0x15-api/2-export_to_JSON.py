@@ -2,9 +2,9 @@
 """A Python script that returns information about a given employee ID's
 TODO list progress and export the data in the JSON format."""
 
-import sys
-import requests
 import json
+import requests
+import sys
 
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
