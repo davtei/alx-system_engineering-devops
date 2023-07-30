@@ -1,5 +1,5 @@
-0x14. MySQL
-DevOpsSysAdminMySQL
+# **[0x14. MySQL](https://intranet.alxswe.com/projects/280)**
+<button>DevOps</button> <button>SysAdmin</button> <button>MySQL</button>
 
     By: Sylvain Kalache, co-founder at Holberton School
     Weight: 1
@@ -7,21 +7,23 @@ DevOpsSysAdminMySQL
     Checker was released at Jul 18, 2023 12:00 PM
     An auto review will be launched at the deadline
 
-Concepts
+## Concepts
 
 For this project, we expect you to look at these concepts:
 
-    Database administration
-    Web stack debugging
-    [How to] Install mysql 5.7
+- [Database administration](../Concepts/Database%20administration.md)
+- [Web stack debugging](../Concepts/Web%20stack%20debugging.md)
+- [[How to] Install mysql 5.7](../Concepts/[How%20to]%20Install%20mysql%205.7.md)
 
-Resources
+![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/280/KkrkDHT.png)
+
+## Resources
 
 Read or watch:
 
-    What is a primary-replica cluster
-    MySQL primary replica setup
-    Build a robust database backup strategy
+- [What is a primary-replica cluster](https://www.techtarget.com/searchdatamanagement/definition/database)
+- [MySQL primary replica setup](https://www.digitalocean.com/community/tutorials/how-to-choose-a-redundancy-plan-to-ensure-high-availability#sql-replication)
+- [Build a robust database backup strategy](https://www.digitalocean.com/community/tutorials/how-to-set-up-replication-in-mysql)
 
 man or help:
 
@@ -57,11 +59,13 @@ General
     The first line of all your Bash scripts should be exactly #!/usr/bin/env bash
     The second line of all your Bash scripts should be a comment explaining what is the script doing
 
-Your servers
-Name 	Username 	IP 	State
-195024-web-01 	ubuntu 	34.224.95.183 	running
-195024-web-02 	ubuntu 	100.26.224.205 	running
-195024-lb-01 	ubuntu 	100.25.119.99 	running
+## **Your servers**
+    Name                Username	IP	                State
+    195024-web-01	    ubuntu	    34.224.95.183	    running
+    195024-web-02	    ubuntu	    100.26.224.205	    running
+    195024-lb-01	    ubuntu	    100.25.119.99	    running
+
+
 Tasks
 0. Install MySQL
 mandatory
@@ -93,7 +97,7 @@ In order for us to verify that your servers are properly configured, we need you
     In addition to that, make sure that task #3 of your SSH project is completed for web-01 and web-02. You will likely need to add the public key to web-02 as you only added it to web-01 for this project. The checker will connect to your servers to check MySQL status
 
 Example:
-
+```sql
 ubuntu@229-web-01:~$ mysql -uholberton_user -p -e "SHOW GRANTS FOR 'holberton_user'@'localhost'"
 Enter password:
 +-----------------------------------------------------------------+
@@ -102,7 +106,7 @@ Enter password:
 | GRANT REPLICATION CLIENT ON *.* TO 'holberton_user'@'localhost' |
 +-----------------------------------------------------------------+
 ubuntu@229-web-01:~$
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
@@ -116,7 +120,7 @@ In order for you to set up replication, you’ll need to have a database with at
     Create a database named tyrell_corp.
     Within the tyrell_corp database create a table named nexus6 and add at least one entry to it.
     Make sure that holberton_user has SELECT permissions on your table so that we can check that the table exists and is not empty.
-
+```sql
 ubuntu@229-web-01:~$ mysql -uholberton_user -p -e "use tyrell_corp; select * from nexus6"
 Enter password:
 +----+-------+
@@ -125,7 +129,7 @@ Enter password:
 |  1 | Leon  |
 +----+-------+
 ubuntu@229-web-01:~$
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
@@ -139,7 +143,7 @@ Before you get started with your primary-replica synchronization, you need one m
     The name of the new user should be replica_user, with the host name set to %, and can have whatever password you’d like.
     replica_user must have the appropriate permissions to replicate your primary MySQL server.
     holberton_user will need SELECT privileges on the mysql.user table in order to check that replica_user was created with the correct permissions.
-
+```sql
 ubuntu@229-web-01:~$ mysql -uholberton_user -p -e 'SELECT user, Repl_slave_priv FROM mysql.user'
 +------------------+-----------------+
 | user             | Repl_slave_priv |
@@ -152,7 +156,7 @@ ubuntu@229-web-01:~$ mysql -uholberton_user -p -e 'SELECT user, Repl_slave_priv 
 | replica_user     | Y               |
 +------------------+-----------------+
 ubuntu@229-web-01:~$
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
@@ -181,7 +185,7 @@ Tips:
 
 Example:
 web-01
-
+```sql
 ubuntu@web-01:~$ mysql -uholberton_user -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -205,7 +209,8 @@ mysql> show master status;
 1 row in set (0.00 sec)
 
 mysql>
-
+```
+```sql
 web-02
 
 root@web-02:/home/ubuntu# mysql -uholberton_user -p
@@ -267,7 +272,7 @@ Master_SSL_Verify_Server_Cert: No
 1 row in set (0.00 sec)
 
 mysql>
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
@@ -276,6 +281,8 @@ Repo:
 
 5. MySQL backup
 mandatory
+
+![](https://www.youtube.com/watch?v=ANU-oSE5_hU)
 
 What if the data center where both your primary and replica database servers are hosted are down because of a power outage or even worse: flooding, fire? Then all your data would inaccessible or lost. That’s why you want to backup and store them in a different system in another physical location. This can be achieved by dumping your MySQL data, compressing them and storing them in a different data center.
 
@@ -291,7 +298,7 @@ Requirements:
     The Bash script accepts one argument that is the password used to connect to the MySQL database
 
 Example:
-
+```sql
 ubuntu@03-web-01:~$ ls
 5-mysql_backup
 ubuntu@03-web-01:~$ ./5-mysql_backup mydummypassword
@@ -344,7 +351,7 @@ ubuntu@03-web-01:~$
 ubuntu@03-web-01:~$ file 01-03-2017.tar.gz
 01-03-2017.tar.gz: gzip compressed data, from Unix, last modified: Wed Mar  1 23:38:09 2017
 ubuntu@03-web-01:~$
-
+```
 Repo:
 
     GitHub repository: alx-system_engineering-devops
