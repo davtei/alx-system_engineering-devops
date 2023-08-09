@@ -9,13 +9,16 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     results are found for the given subreddit, the function should return
     None."""
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {"User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"}
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+        }
     params = {
         "after": after,
         "count": count,
         "limit": 100
         }
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
     if response.status_code == 404:
         return ("None")
     results = response.json().get("data")
